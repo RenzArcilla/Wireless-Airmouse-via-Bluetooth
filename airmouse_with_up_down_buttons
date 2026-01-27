@@ -4,8 +4,8 @@
 #include <Wire.h>
 
 // --- PIN DEFINITIONS ---
-#define LEFTBUTTON 19
-#define RIGHTBUTTON 18
+#define LEFTBUTTON 18
+#define RIGHTBUTTON 19
 #define SCROLLUP_BUTTON 16
 #define SCROLLDOWN_BUTTON 17
 
@@ -17,7 +17,7 @@
 #define SCROLL_SPEED 1      
 
 Adafruit_MPU6050 mpu;
-BleMouse bleMouse("ESP32 Air Mouse", "Maker", 100);
+BleMouse bleMouse("NAFR ClickAire", "Maker", 100);
 
 // --- GLOBAL VARIABLES ---
 unsigned long lastActivityTime = 0;
@@ -108,9 +108,9 @@ void loop() {
 
     if (abs(filteredX) > DEADZONE || abs(filteredZ) > DEADZONE) {
       int moveX = (int)(filteredZ * -SENSITIVITY);
-      int moveY = (int)(filteredX * SENSITIVITY);
+      int moveZ = (int)(filteredX * -SENSITIVITY);
       
-      bleMouse.move(moveX, moveY);
+      bleMouse.move(moveX, moveZ);
       isMoving = true; 
     }
 
